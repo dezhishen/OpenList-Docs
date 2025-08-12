@@ -325,7 +325,7 @@ This article will collect some error codes that may occur during the use of Open
 然后使用以下命令运行docker：
 
 ```bash
-docker run -d --name openlist --user 1000:1000 -v ${yourDataDir}:/opt/openlist/data -p 5244:5244 openlist/openlist
+docker run -d --name openlist --user 1000:1000 -v ${yourDataDir}:/opt/openlist/data -p 5244:5244 openlistteam/openlist
 ```
 
 :::
