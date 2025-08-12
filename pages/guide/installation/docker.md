@@ -23,7 +23,7 @@ It is highly recommended to deploy OpenList in an isolated environment using Doc
 
 ::: zh-CN
 ::: warning
-请注意： 在`v4.1.0`以后的版本中(不包含v4.1.0)，OpenList修改了镜像中已经去掉了`PUID`，`PGID`的方式，并借鉴于mariadb的构建方式，使用useradd增加了用户openlist(1001)和组openlist(1001)，并使用该用户运行openlist server。
+请注意： 在`v4.1.0`以后的版本中(不包含v4.1.0)，OpenList镜像已经移除了`PUID`，`PGID`，并借鉴于mariadb的构建方式，使用useradd增加了用户openlist(1001)和组openlist(1001)，并使用该用户运行openlist server。
 这意味着，您需要手动处理映射的目录的权限问题，确保容器内的openlist用户(1001)有权限访问映射的目录。
 您也可以通过 `--user UID:GID` 的方式来运行容器指定容器内运行openlist的用户和组，让容器内有权限访问映射的目录。
 
@@ -413,7 +413,7 @@ docker pull openlistteam/openlist:latest
 
 :::
 
-#### 升级到 v4.1.0 以后版本 （不包括v4.1.0) { lang="zh-CN" }
+#### 升级到 v4.1.0 以后版本 （不包括v4.1.0） { lang="zh-CN" }
 
 #### Upgrade to version v4.1.0 and later (excluding v4.1.0) { lang="en" }
 
