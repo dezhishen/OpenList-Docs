@@ -336,7 +336,7 @@ First, ensure that the `${yourDataDir}` directory has permissions set to `1000:1
 Then run the docker with the following command:
 
 ```bash
-docker run -d --name openlist --user 1000:1000 -v ${yourDataDir}:/opt/openlist/data -p 5244:5244 openlist/openlist
+docker run -d --name openlist --user 1000:1000 -v ${yourDataDir}:/opt/openlist/data -p 5244:5244 openlistteam/openlist
 ```
 
 :::
