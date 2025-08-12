@@ -385,7 +385,7 @@ Please note: From version `v4.1.0` onwards (excluding v4.1.0), the injection of 
 Please note: In the **rootless** mode of Docker, `--user 0:0` represents the current user's UID and GID. Please ensure that you set the `--user` parameter correctly when running the container to ensure proper file permissions.
 :::
 
-#### For version v4.1.0 later { lang="en" }
+#### For versions after v4.1.0 { lang="en" }
 
 ::: en
 
