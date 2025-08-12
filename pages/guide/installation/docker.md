@@ -380,7 +380,9 @@ docker pull openlistteam/openlist:latest
 ::: tip
 please note: From version `v4.1.0` onwards (excluding v4.1.0), the injection of the user ID for running OpenList has changed to the `--user UID:GID` method. This means that the PUID and PGID environment variables will no longer take effect. Please ensure that you correctly set the `--user` parameter when running the container to ensure proper file permissions.
 
-please note: In the **rootless** mode of Docker, `--user 0:0` represents the current user's UID and GID. Please ensure that you set the `--user` parameter correctly when running the container to ensure proper file permissions.
+Please note: From version `v4.1.0` onwards (excluding v4.1.0), the injection of the user ID for running OpenList has changed to the `--user UID:GID` method. This means that the PUID and PGID environment variables will no longer take effect. Please ensure that you correctly set the `--user` parameter when running the container to ensure proper file permissions.
+
+Please note: In the **rootless** mode of Docker, `--user 0:0` represents the current user's UID and GID. Please ensure that you set the `--user` parameter correctly when running the container to ensure proper file permissions.
 :::
 
 #### For version v4.1.0 later { lang="en" }
