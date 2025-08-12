@@ -33,11 +33,58 @@ Install Docker. And run the command below:
 安装好 Docker 后，执行以下命令：
 :::
 
+::: en
+::: tip
+please note: From version `v4.1.0` onwards (excluding v4.1.0), the injection of the user ID for running OpenList has changed to the `--user UID:GID` method. This means that the PUID and PGID environment variables will no longer take effect. Please ensure that you correctly set the `--user` parameter when running the container to ensure proper file permissions.
+
+please note: In the **rootless** mode of Docker, `--user 0:0` represents the current user's UID and GID. Please ensure that you set the `--user` parameter correctly when running the container to ensure proper file permissions.
+:::
+
+::: zh-CN
+::: tip
+请注意： 在`v4.1.0`以后的版本中(不包含v4.1.0)，OpenList的运行用户ID的注入，改为 --user UID:GID 的方式注入。 这意味着，PUID和PGID环境变量将不再生效。请确保您在运行容器时，正确设置了 --user 参数，以确保文件权限的正确性。
+
+请注意：**rootless** 模式中的docker， --user 0:0 代表当前用户的 UID 和 GID。请确保您在运行容器时，正确设置了 --user 参数，以确保文件权限的正确性。
+:::
+
+#### v4.1.0 以后版本 { lang="zh-CN" }
+
+#### For version after v4.1.0 { lang="en" }
+
+::: en
+Please replace `0:0` with the actual user ID and group ID you want to use to run OpenList. You can find these IDs by running the `id` command in your terminal.
+:::
+::: zh-CN
+请将 `0:0` 替换为您希望用来运行 OpenList 的实际用户 ID 和组 ID。您可以通过在终端运行 `id` 命令来找到这些 ID。
+:::
+
+```bash
+docker run --user 0:0 -d --restart=unless-stopped -v /etc/openlist:/opt/openlist/data -p 5244:5244 -e UMASK=022 --name="openlist" openlistteam/openlist:latest
+```
+
+#### v4.1.0 及以前版本 { lang="zh-CN" }
+
+#### For version v4.1.0 and earlier { lang="en" }
+
 ```bash
 docker run -d --restart=unless-stopped -v /etc/openlist:/opt/openlist/data -p 5244:5244 -e PUID=0 -e PGID=0 -e UMASK=022 --name="openlist" openlistteam/openlist:latest
 ```
 
 ### Docker Compose
+
+::: en
+::: tip
+please note: From version `v4.1.0` onwards (excluding v4.1.0), the injection of the user ID for running OpenList has changed to the `--user UID:GID` method. This means that the PUID and PGID environment variables will no longer take effect. Please ensure that you correctly set the `--user` parameter when running the container to ensure proper file permissions.
+
+please note: In the **rootless** mode of Docker, `--user 0:0` represents the current user's UID and GID. Please ensure that you set the `--user` parameter correctly when running the container to ensure proper file permissions.
+:::
+
+::: zh-CN
+::: tip
+请注意： 在`v4.1.0`以后的版本中(不包含v4.1.0)，OpenList的运行用户ID的注入，改为 --user UID:GID 的方式注入。 这意味着，PUID和PGID环境变量将不再生效。请确保您在运行容器时，正确设置了 --user 参数，以确保文件权限的正确性。
+
+请注意：**rootless** 模式中的docker，--user 0:0 代表当前用户的 UID 和 GID。请确保您在运行容器时，正确设置了 --user 参数，以确保文件权限的正确性。
+:::
 
 ::: en
 Create `docker-compose.yml` file.
@@ -58,6 +105,30 @@ Write the content below. Then save and exit.
 ::: zh-CN
 写入以下内容，然后保存并退出：
 :::
+
+#### For version after v4.1.0 { lang="en" }
+
+#### v4.1.0 以后版本 { lang="zh-CN" }
+
+```yaml
+# docker-compose.yml
+services:
+  openlist:
+    image: 'openlistteam/openlist:latest'
+    container_name: openlist
+    user: '0:0' # Please replace `0:0` with the actual user ID and group ID you want to use to run OpenList.
+    volumes:
+      - './data:/opt/openlist/data'
+    ports:
+      - '5244:5244'
+    environment:
+      - UMASK=022
+    restart: unless-stopped
+```
+
+#### For version v4.1.0 and earlier { lang="en" }
+
+#### v4.1.0 及以前版本 { lang="zh-CN" }
 
 ```yaml
 # docker-compose.yml
@@ -95,8 +166,8 @@ docker compose up -d
 ::: en
 | Name | Default | Desc |
 |:------------|:--------|----------------------------------------------------------------------------------------------------------------------------|
-| `PUID` | `0` | User UID |
-| `PGID` | `0` | User GID |
+| `PUID` | `0` | User UID,Deprecated in v4.1.0 later versions|
+| `PGID` | `0` | User GID,Deprecated in v4.1.0 later versions|
 | `UMASK` | `022` | https://en.wikipedia.org/wiki/Umask |
 | `TZ` | `UTC` | Default is the UTC time zone. If you want to specify a time zone, you can set this variable, for example: `Asia/Shanghai`. |
 | `RUN_ARIA2` | | Whether to run ARIA2 concurrently, default is `true` if aria2 is pre-installed, otherwise it is `false`. |
@@ -105,8 +176,8 @@ docker compose up -d
 ::: zh-CN
 | 名称 | 默认值 | 说明 |
 | :---------- | :----- | -------------------------------------------------------------------------- |
-| `PUID` | `0` | 运行身份 UID |
-| `PGID` | `0` | 运行身份 GID |
+| `PUID` | `0` | 运行身份 UID，在v4.1.0以后的版本中废弃 |
+| `PGID` | `0` | 运行身份 GID，在v4.1.0以后的版本中废弃 |
 | `UMASK` | `022` | https://en.wikipedia.org/wiki/Umask |
 | `TZ` | `UTC` | 默认为 UTC 时区，如果你想指定时区，则可以设置此变量，例如：`Asia/Shanghai` |
 | `RUN_ARIA2` | | 是否同时运行 ARIA2，当镜像含有 aria2 环境时默认为 `true`，否则为 `false` |
@@ -299,8 +370,35 @@ docker rm ID
 
 # Pull the latest image of OpenList
 docker pull openlistteam/openlist:latest
+```
 
-# Enter the installation command
+:::
+
+::: en
+::: tip
+please note: From version `v4.1.0` onwards (excluding v4.1.0), the injection of the user ID for running OpenList has changed to the `--user UID:GID` method. This means that the PUID and PGID environment variables will no longer take effect. Please ensure that you correctly set the `--user` parameter when running the container to ensure proper file permissions.
+
+please note: In the **rootless** mode of Docker, `--user 0:0` represents the current user's UID and GID. Please ensure that you set the `--user` parameter correctly when running the container to ensure proper file permissions.
+:::
+
+#### For version v4.1.0 later { lang="en" }
+
+::: en
+
+```bash
+# Enter the installation command, replace `0:0` with the actual user ID and group ID you want to use to run OpenList.
+# You can find these IDs by running the `id` command in your terminal.
+docker run -d --user 0:0 --restart=unless-stopped -v /etc/openlist:/opt/openlist/data -p 5244:5244 -e UMASK=022 --name="openlist" openlistteam/openlist:latest
+```
+
+:::
+
+#### For version v4.1.0 and earlier { lang="en" }
+
+::: en
+
+```bash
+# version 4.1.0 and earlier
 docker run -d --restart=unless-stopped -v /etc/openlist:/opt/openlist/data -p 5244:5244 -e PUID=0 -e PGID=0 -e UMASK=022 --name="openlist" openlistteam/openlist:latest
 ```
 
@@ -320,8 +418,34 @@ docker rm ID
 
 # 拉取 OpenList 的最新镜像
 docker pull openlistteam/openlist:latest
+```
 
-# 输入安装命令
+:::
+
+::: zh-CN
+::: tip
+请注意： 在`v4.1.0`以后的版本中(不包含v4.1.0)，OpenList的运行用户ID的注入，改为 --user UID:GID 的方式注入。 这意味着，PUID和PGID环境变量将不再生效。请确保您在运行容器时，正确设置了 --user 参数，以确保文件权限的正确性。
+
+请注意：**rootless** 模式中的docker，--user 0:0 代表当前用户的 UID 和 GID。请确保您在运行容器时，正确设置了 --user 参数，以确保文件权限的正确性。
+:::
+
+#### v4.1.0 以后版本 { lang="zh-CN" }
+
+::: zh-CN
+
+```bash
+# 输入安装命令，替换 `0:0` 为您希望用来运行 OpenList 的实际用户 ID 和组 ID。
+# 您可以通过在终端运行 `id` 命令来找到这些 ID。
+docker run -d --user 0:0 --restart=unless-stopped -v /etc/openlist:/opt/openlist/data -p 5244:5244 -e UMASK=022 --name="openlist" openlistteam/openlist:latest
+```
+
+:::
+
+#### v4.1.0 及以前版本 { lang="zh-CN" }
+
+::: zh-CN
+
+```bash
 docker run -d --restart=unless-stopped -v /etc/openlist:/opt/openlist/data -p 5244:5244 -e PUID=0 -e PGID=0 -e UMASK=022 --name="openlist" openlistteam/openlist:latest
 ```
 
@@ -367,6 +491,10 @@ Write the content below. Then save and exit.
 写入以下内容，然后保存并退出：
 :::
 
+#### For version after v4.1.0 { lang="en" }
+
+#### v4.1.0 以后版本 { lang="zh-CN" }
+
 ```yaml
 # docker-compose.yml
 services:
@@ -379,11 +507,123 @@ services:
       - '${OPLISTDX_TEMP}/aria2:/opt/openlist/data/temp/aria2'
       - '${OPLISTDX_TEMP}/qBittorrent:/opt/openlist/data/temp/qBittorrent'
       - '${OPLISTDX_TEMP}/Transmission:/opt/openlist/data/temp/Transmission'
+    user: '${OPLISTDX_PUID}:${OPLISTDX_PGID}' # If you are using v4.1.0 later, must uncomment this line and set the correct user ID and group ID.
     ports:
       - '5244:5244'
     environment:
-      - PUID=${OPLISTDX_PUID}
-      - PGID=${OPLISTDX_PGID}
+      # - PUID=${OPLISTDX_PUID} # Deprecated in v4.1.0 later versions
+      # - PGID=${OPLISTDX_PGID} # Deprecated in v4.1.0 later versions
+      - TZ=${OPLISTDX_TZ}
+      - UMASK=022
+    restart: unless-stopped
+
+  # # Aria2 下载器及webui | Aria2 Downloader & WebUI
+  # aria2-pro:
+  #   image: p3terx/aria2-pro
+  #   container_name: aria2-pro
+  #   restart: unless-stopped
+  #   ports:
+  #     - '6800:6800'
+  #     - '6888:6888'
+  #     - '6888:6888/udp'
+  #   volumes:
+  #     - '${OPLISTDX_DATA}/aria2-pro:/config'
+  #     - '${OPLISTDX_DOWNLOADS}/aria2:/downloads'
+  #     - '${OPLISTDX_TEMP}/aria2:/opt/openlist/data/temp/aria2'
+  #   environment:
+  #     - 'PUID=${OPLISTDX_PUID}'
+  #     - 'PGID=${OPLISTDX_PGID}'
+  #     - 'TZ=${OPLISTDX_TZ}'
+  #     - 'UMASK_SET=022'
+  #     - 'RPC_SECRET=${OPLISTDX_ARIA2TOKEN}'
+  #     - 'RPC_PORT=6800'
+  #     - 'LISTEN_PORT=6888'
+  # ariang:
+  #   container_name: ariang
+  #   image: p3terx/ariang
+  #   command: --port 6880
+  #   ports:
+  #     - 6880:6880
+  #   restart: unless-stopped
+  #   environment:
+  #     - 'PUID=${OPLISTDX_PUID}'
+  #     - 'PGID=${OPLISTDX_PGID}'
+  #     - 'TZ=${OPLISTDX_TZ}'
+  #   logging:
+  #     driver: json-file
+  #     options:
+  #       max-size: 1m
+  #   depends_on:
+  #     - aria2-pro
+
+  # # qBittorrent 下载器 | qBittorrent Downloader
+  # qbittorrent:
+  #   image: lscr.io/linuxserver/qbittorrent:latest
+  #   container_name: qbittorrent
+  #   environment:
+  #     - PUID=${OPLISTDX_PUID}
+  #     - PGID=${OPLISTDX_PGID}
+  #     - TZ=${OPLISTDX_TZ}
+  #     - WEBUI_PORT=8080
+  #     - TORRENTING_PORT=6881
+  #   volumes:
+  #     - '${OPLISTDX_DATA}/qbittorrent:/config'
+  #     - '${OPLISTDX_DOWNLOADS}/qbittorrent:/downloads'
+  #     - '${OPLISTDX_TEMP}/qBittorrent:/opt/openlist/data/temp/qBittorrent'
+  #   ports:
+  #     - 8080:8080
+  #     - 6881:6881
+  #     - 6881:6881/udp
+  #   restart: unless-stopped
+
+  # # Transmission 下载器 | Transmission Downloader
+  # transmission:
+  #   image: lscr.io/linuxserver/transmission:latest
+  #   container_name: transmission
+  #   environment:
+  #     - PUID=${OPLISTDX_PUID}
+  #     - PGID=${OPLISTDX_PGID}
+  #     - TZ=${OPLISTDX_TZ}
+  #     - TRANSMISSION_WEB_HOME=${OPLISTDX_TRANSMISSION_WEB_HOME} #optional
+  #     - USER=${OPLISTDX_TRANSMISSION_USER} #optional
+  #     - PASS=${OPLISTDX_TRANSMISSION_PASS} #optional
+  #     - WHITELIST=${OPLISTDX_TRANSMISSION_WHITELIST} #optional
+  #     - PEERPORT=${OPLISTDX_TRANSMISSION_PEERPORT} #optional
+  #     - HOST_WHITELIST=${OPLISTDX_TRANSMISSION_HOST_WHITELIST} #optional
+  #   volumes:
+  #     - '${OPLISTDX_DATA}/transmission:/config'
+  #     - '${OPLISTDX_DOWNLOADS}/transmission:/downloads'
+  #     - '${OPLISTDX_TRANSMISSIONWATCH}:/watch'
+  #     - '${OPLISTDX_TEMP}/Transmission:/opt/openlist/data/temp/Transmission'
+  #   ports:
+  #     - 9091:9091
+  #     - 51413:51413
+  #     - 51413:51413/udp
+  #   restart: unless-stopped
+```
+
+#### For version v4.1.0 and earlier { lang="en" }
+
+#### v4.1.0 及以前版本 { lang="zh-CN" }
+
+```yaml
+# docker-compose.yml
+services:
+  # OpenList | OpenList Core Service
+  openlist:
+    image: 'openlistteam/openlist:latest'
+    container_name: openlist
+    volumes:
+      - '${OPLISTDX_DATA}/openlist:/opt/openlist/data'
+      - '${OPLISTDX_TEMP}/aria2:/opt/openlist/data/temp/aria2'
+      - '${OPLISTDX_TEMP}/qBittorrent:/opt/openlist/data/temp/qBittorrent'
+      - '${OPLISTDX_TEMP}/Transmission:/opt/openlist/data/temp/Transmission'
+    # user: "${OPLISTDX_PUID}:${OPLISTDX_PGID}" # If you are using v4.1.0 later, must uncomment this line and set the correct user ID and group ID.
+    ports:
+      - '5244:5244'
+    environment:
+      - PUID=${OPLISTDX_PUID} # Deprecated in v4.1.0 later versions
+      - PGID=${OPLISTDX_PGID} # Deprecated in v4.1.0 later versions
       - TZ=${OPLISTDX_TZ}
       - UMASK=022
     restart: unless-stopped
