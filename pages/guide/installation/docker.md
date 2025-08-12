@@ -169,7 +169,7 @@ docker compose up -d
 | Name | Default | Desc |
 |:------------|:--------|----------------------------------------------------------------------------------------------------------------------------|
 | `PUID` | `0` | User UID,Deprecated in v4.1.0 later versions|
-| `PGID` | `0` | User GID,Deprecated in v4.1.0 later versions|
+| `PGID` | `0` | User GID, Deprecated in v4.1.0 later versions|
 | `UMASK` | `022` | https://en.wikipedia.org/wiki/Umask |
 | `TZ` | `UTC` | Default is the UTC time zone. If you want to specify a time zone, you can set this variable, for example: `Asia/Shanghai`. |
 | `RUN_ARIA2` | | Whether to run ARIA2 concurrently, default is `true` if aria2 is pre-installed, otherwise it is `false`. |
