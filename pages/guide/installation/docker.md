@@ -15,9 +15,28 @@ categories:
 ::: warning
 It is highly recommended to deploy OpenList in an isolated environment using Docker. Otherwise, without security measures like SELinux or AppArmor, if your password is exposed, and hackers may gain access to all the files on your server.
 :::
+
 ::: zh-CN
 ::: warning
 强烈建议使用 Docker 在隔离环境中部署 OpenList。否则，如果没有正确配置像 SELinux 或 AppArmor 这样的安全措施，假如您的密码暴露，黑客将可以访问您服务器上的所有文件。
+:::
+
+::: zh-CN
+::: warning
+请注意： 在`v4.1.0`以后的版本中(不包含v4.1.0)，OpenList修改了镜像中已经去掉了`PUID`，`PGID`的方式，并借鉴于mariadb的构建方式，使用useradd增加了用户openlist(1001)和组openlist(1001)，并使用该用户运行openlist server。
+这意味着，您需要手动处理映射的目录的权限问题，确保容器内的openlist用户(1001)有权限访问映射的目录。
+您也可以通过 `--user UID:GID` 的方式来运行容器指定容器内运行openlist的用户和组，让容器内有权限访问映射的目录。
+
+请注意：**rootless** 模式中的docker， `--user 0:0` 代表当前用户的 UID 和 GID。请确保您在运行容器时，正确设置了 `--user` 参数，以确保文件权限的正确性。
+:::
+
+::: en
+::: warning
+Please note: In version `v4.1.0` and later (excluding v4.1.0), OpenList has removed the `PUID` and `PGID` environment variables in the image, and has adopted a method similar to that of MariaDB, where a user named `openlist` (UID 1001) and a group named `openlist` (GID 1001) are created, and OpenList server runs under this user.
+This means you need to manually handle the permission issues of the mapped directory, ensuring that the OpenList user (1001) inside the container has access to the mapped directory.
+You can also run the container with the `--user UID:GID` option to specify the user and group under which OpenList runs inside the container, allowing it to access the mapped directory.
+
+Please note: In the **rootless** mode of Docker, `--user 0:0` represents the current user's UID and GID. Please ensure that you set the `--user` parameter correctly when running the container to ensure proper file permissions.
 :::
 
 ## Install { lang="en" }
@@ -29,39 +48,53 @@ It is highly recommended to deploy OpenList in an isolated environment using Doc
 ::: en
 Install Docker. And run the command below:
 :::
+
 ::: zh-CN
 安装好 Docker 后，执行以下命令：
-:::
-
-::: en
-::: tip
-Please note: From version `v4.1.0` onwards (excluding v4.1.0), the injection of the user ID for running OpenList has changed to the `--user UID:GID` method. This means that the PUID and PGID environment variables will no longer take effect. Please ensure that you correctly set the `--user` parameter when running the container to ensure proper file permissions.
-
-Please note: From version `v4.1.0` onwards (excluding v4.1.0), the injection of the user ID for running OpenList has changed to the `--user UID:GID` method. This means that the PUID and PGID environment variables will no longer take effect. Please ensure that you correctly set the `--user` parameter when running the container to ensure proper file permissions.
-
-Please note: In the **rootless** mode of Docker, `--user 0:0` represents the current user's UID and GID. Please ensure that you set the `--user` parameter correctly when running the container to ensure proper file permissions.
-:::
-
-::: zh-CN
-::: tip
-请注意： 在`v4.1.0`以后的版本中(不包含v4.1.0)，OpenList的运行用户ID的注入，改为 --user UID:GID 的方式注入。 这意味着，PUID和PGID环境变量将不再生效。请确保您在运行容器时，正确设置了 --user 参数，以确保文件权限的正确性。
-
-请注意：**rootless** 模式中的docker， --user 0:0 代表当前用户的 UID 和 GID。请确保您在运行容器时，正确设置了 --user 参数，以确保文件权限的正确性。
 :::
 
 #### v4.1.0 以后版本 { lang="zh-CN" }
 
 #### For version after v4.1.0 { lang="en" }
 
-::: en
-Please replace `0:0` with the actual user ID and group ID you want to use to run OpenList. You can find these IDs by running the `id` command in your terminal.
-:::
 ::: zh-CN
-请将 `0:0` 替换为您希望用来运行 OpenList 的实际用户 ID 和组 ID。您可以通过在终端运行 `id` 命令来找到这些 ID。
+::: warning
+请注意：`/etc/openlist` 仅为默认映射的目录，您可以根据需要修改为其他目录。
+:::
+
+::: en
+::: warning
+Please note: `/etc/openlist` is just the default mapped directory, you can change it to another directory as needed.
+:::
+
+::: zh-CN
+::: tip
+如果您希望使用当前用户运行和管理openlist及其配置目录，请使用以下命令：
+:::
+
+::: en
+::: tip
+If you are using the current user to run and manage OpenList and its configuration directory, please use the following command:
 :::
 
 ```bash
-docker run --user 0:0 -d --restart=unless-stopped -v /etc/openlist:/opt/openlist/data -p 5244:5244 -e UMASK=022 --name="openlist" openlistteam/openlist:latest
+mkdir -p /etc/openlist
+docker run --user `id -u`:`id -g` -d --restart=unless-stopped -v /etc/openlist:/opt/openlist/data -p 5244:5244 -e UMASK=022 --name="openlist" openlistteam/openlist:latest
+```
+
+::: zh-CN
+::: tip
+如果您希望使用1001，即容器内置的默认openlist用户运行和管理openlist及其配置目录，请使用以下命令：
+:::
+
+::: en
+::: tip
+if you want to run and manage OpenList and its configuration directory using the default OpenList user (1001) inside the container, please use the following command:
+:::
+
+```bash
+sudo chown -R 1001:1001 /etc/openlist
+docker run -d --restart=unless-stopped -v /etc/openlist:/opt/openlist/data -p 5244:5244 -e UMASK=022 --name="openlist" openlistteam/openlist:latest
 ```
 
 #### v4.1.0 及以前版本 { lang="zh-CN" }
@@ -73,20 +106,6 @@ docker run -d --restart=unless-stopped -v /etc/openlist:/opt/openlist/data -p 52
 ```
 
 ### Docker Compose
-
-::: en
-::: tip
-Please note: From version `v4.1.0` onwards (excluding v4.1.0), the injection of the user ID for running OpenList has changed to the `--user UID:GID` method. This means that the PUID and PGID environment variables will no longer take effect. Please ensure that you correctly set the `--user` parameter when running the container to ensure proper file permissions.
-
-Please note: In the **rootless** mode of Docker, `--user 0:0` represents the current user's UID and GID. Please ensure that you set the `--user` parameter correctly when running the container to ensure proper file permissions.
-:::
-
-::: zh-CN
-::: tip
-请注意： 在`v4.1.0`以后的版本中(不包含v4.1.0)，OpenList的运行用户ID的注入，改为 --user UID:GID 的方式注入。 这意味着，PUID和PGID环境变量将不再生效。请确保您在运行容器时，正确设置了 --user 参数，以确保文件权限的正确性。
-
-请注意：**rootless** 模式中的docker，--user 0:0 代表当前用户的 UID 和 GID。请确保您在运行容器时，正确设置了 --user 参数，以确保文件权限的正确性。
-:::
 
 ::: en
 Create `docker-compose.yml` file.
@@ -376,38 +395,6 @@ docker pull openlistteam/openlist:latest
 
 :::
 
-::: en
-::: tip
-Please note: From version `v4.1.0` onwards (excluding v4.1.0), the injection of the user ID for running OpenList has changed to the `--user UID:GID` method. This means that the PUID and PGID environment variables will no longer take effect. Please ensure that you correctly set the `--user` parameter when running the container to ensure proper file permissions.
-
-Please note: From version `v4.1.0` onwards (excluding v4.1.0), the injection of the user ID for running OpenList has changed to the `--user UID:GID` method. This means that the PUID and PGID environment variables will no longer take effect. Please ensure that you correctly set the `--user` parameter when running the container to ensure proper file permissions.
-
-Please note: In the **rootless** mode of Docker, `--user 0:0` represents the current user's UID and GID. Please ensure that you set the `--user` parameter correctly when running the container to ensure proper file permissions.
-:::
-
-#### For versions after v4.1.0 { lang="en" }
-
-::: en
-
-```bash
-# Enter the installation command, replace `0:0` with the actual user ID and group ID you want to use to run OpenList.
-# You can find these IDs by running the `id` command in your terminal.
-docker run -d --user 0:0 --restart=unless-stopped -v /etc/openlist:/opt/openlist/data -p 5244:5244 -e UMASK=022 --name="openlist" openlistteam/openlist:latest
-```
-
-:::
-
-#### For version v4.1.0 and earlier { lang="en" }
-
-::: en
-
-```bash
-# version 4.1.0 and earlier
-docker run -d --restart=unless-stopped -v /etc/openlist:/opt/openlist/data -p 5244:5244 -e PUID=0 -e PGID=0 -e UMASK=022 --name="openlist" openlistteam/openlist:latest
-```
-
-:::
-
 ::: zh-CN
 
 ```bash
@@ -426,34 +413,45 @@ docker pull openlistteam/openlist:latest
 
 :::
 
-::: zh-CN
-::: tip
-请注意： 在`v4.1.0`以后的版本中(不包含v4.1.0)，OpenList的运行用户ID的注入，改为 --user UID:GID 的方式注入。 这意味着，PUID和PGID环境变量将不再生效。请确保您在运行容器时，正确设置了 --user 参数，以确保文件权限的正确性。
-
-请注意：**rootless** 模式中的docker，--user 0:0 代表当前用户的 UID 和 GID。请确保您在运行容器时，正确设置了 --user 参数，以确保文件权限的正确性。
-:::
+#### For versions after v4.1.0 { lang="en" }
 
 #### v4.1.0 以后版本 { lang="zh-CN" }
 
 ::: zh-CN
-
-```bash
-# 输入安装命令，替换 `0:0` 为您希望用来运行 OpenList 的实际用户 ID 和组 ID。
-# 您可以通过在终端运行 `id` 命令来找到这些 ID。
-docker run -d --user 0:0 --restart=unless-stopped -v /etc/openlist:/opt/openlist/data -p 5244:5244 -e UMASK=022 --name="openlist" openlistteam/openlist:latest
-```
-
+::: tip
+如果您希望使用1001，即容器内置的默认openlist用户运行和管理openlist及其配置目录，请使用以下命令：
 :::
 
-#### v4.1.0 及以前版本 { lang="zh-CN" }
+::: en
+::: tip
+if you want to run and manage OpenList and its configuration directory using the default OpenList user (1001) inside the container, please use the following command:
+:::
+
+```bash
+docker run -d --restart=unless-stopped -v /etc/openlist:/opt/openlist/data -p 5244:5244 -e UMASK=022 --name="openlist" openlistteam/openlist:latest
+```
 
 ::: zh-CN
+::: tip
+如果您希望使用当前用户运行和管理openlist及其配置目录，请使用以下命令：
+:::
+
+::: en
+::: tip
+If you are using the current user to run and manage OpenList and its configuration directory, please use the following command:
+:::
+
+```bash
+docker run --user `id -u`:`id -g` -d --restart=unless-stopped -v /etc/openlist:/opt/openlist/data -p 5244:5244 -e UMASK=022 --name="openlist" openlistteam/openlist:latest
+```
+
+#### For version v4.1.0 and earlier { lang="en" }
+
+#### v4.1.0 及以前版本 { lang="zh-CN" }
 
 ```bash
 docker run -d --restart=unless-stopped -v /etc/openlist:/opt/openlist/data -p 5244:5244 -e PUID=0 -e PGID=0 -e UMASK=022 --name="openlist" openlistteam/openlist:latest
 ```
-
-:::
 
 ![docker](/img/faq/updocker.png)
 
