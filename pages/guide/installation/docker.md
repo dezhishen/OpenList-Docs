@@ -89,7 +89,7 @@ docker run --user `id -u`:`id -g` -d --restart=unless-stopped -v /etc/openlist:/
 
 ::: en
 ::: tip
-if you want to run and manage OpenList and its configuration directory using the default OpenList user (1001) inside the container, please use the following command:
+If you want to run and manage OpenList and its configuration directory using the default OpenList user (1001) inside the container, please use the following command:
 :::
 
 ```bash
@@ -413,47 +413,45 @@ docker pull openlistteam/openlist:latest
 
 :::
 
-#### For versions after v4.1.0 { lang="en" }
+#### 升级到 v4.1.0 以后版本 （不包括v4.1.0) { lang="zh-CN" }
 
-#### v4.1.0 以后版本 { lang="zh-CN" }
+#### Upgrade to version v4.1.0 and later (excluding v4.1.0) { lang="en" }
 
+::: en
+::: tip
+If you want to run and manage OpenList and its configuration directory using the default OpenList user (1001) inside the container, please use the following command:
+:::
 ::: zh-CN
 ::: tip
 如果您希望使用1001，即容器内置的默认openlist用户运行和管理openlist及其配置目录，请使用以下命令：
 :::
 
-::: en
-::: tip
-if you want to run and manage OpenList and its configuration directory using the default OpenList user (1001) inside the container, please use the following command:
-:::
-
 ```bash
+chown -R 1001:1001 /etc/openlist
 docker run -d --restart=unless-stopped -v /etc/openlist:/opt/openlist/data -p 5244:5244 -e UMASK=022 --name="openlist" openlistteam/openlist:latest
 ```
-
-::: zh-CN
-::: tip
-如果您希望使用当前用户运行和管理openlist及其配置目录，请使用以下命令：
-:::
 
 ::: en
 ::: tip
 If you are using the current user to run and manage OpenList and its configuration directory, please use the following command:
 :::
+::: zh-CN
+::: tip
+如果您希望使用当前用户运行和管理openlist及其配置目录，请使用以下命令：
+:::
 
 ```bash
+sudo chown -R `id -u`:`id -g` /etc/openlist
 docker run --user `id -u`:`id -g` -d --restart=unless-stopped -v /etc/openlist:/opt/openlist/data -p 5244:5244 -e UMASK=022 --name="openlist" openlistteam/openlist:latest
 ```
 
-#### For version v4.1.0 and earlier { lang="en" }
+#### 升级到v4.1.0以前的版本（包括v4.1.0） { lang="zh-CN" }
 
-#### v4.1.0 及以前版本 { lang="zh-CN" }
+#### Upgrade to version v4.1.0 and earlier (including v4.1.0) { lang="en" }
 
 ```bash
 docker run -d --restart=unless-stopped -v /etc/openlist:/opt/openlist/data -p 5244:5244 -e PUID=0 -e PGID=0 -e UMASK=022 --name="openlist" openlistteam/openlist:latest
 ```
-
-![docker](/img/faq/updocker.png)
 
 ### Docker Compose
 
