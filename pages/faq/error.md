@@ -330,7 +330,7 @@ docker run -d --name openlist --user 1000:1000 -v ${yourDataDir}:/opt/openlist/d
 
 :::
 ::: en
-**Q**：docker logs openlist出现: FATA[2025-08-12 02:48:46] failed to create config file: open /opt/openlist/data/config.json: permission denied 。
+**Q**：docker logs openlist : FATA[2025-08-12 02:48:46] failed to create config file: open /opt/openlist/data/config.json: permission denied 。
 **A**：This is caused by the directory mounted not matching the user permissions running the docker. The solution is to use the `--user` parameter to specify the user running it, assuming you want to run as user `1000:1000`.
 First, ensure that the `${yourDataDir}` directory has permissions set to `1000:1000`. If not, use `sudo chown -R 1000:1000 ${yourDataDir}` to change the directory permissions.
 Then run the docker with the following command:
