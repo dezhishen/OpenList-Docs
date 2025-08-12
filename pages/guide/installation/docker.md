@@ -35,7 +35,7 @@ Install Docker. And run the command below:
 
 ::: en
 ::: tip
-please note: From version `v4.1.0` onwards (excluding v4.1.0), the injection of the user ID for running OpenList has changed to the `--user UID:GID` method. This means that the PUID and PGID environment variables will no longer take effect. Please ensure that you correctly set the `--user` parameter when running the container to ensure proper file permissions.
+Please note: From version `v4.1.0` onwards (excluding v4.1.0), the injection of the user ID for running OpenList has changed to the `--user UID:GID` method. This means that the PUID and PGID environment variables will no longer take effect. Please ensure that you correctly set the `--user` parameter when running the container to ensure proper file permissions.
 
 Please note: From version `v4.1.0` onwards (excluding v4.1.0), the injection of the user ID for running OpenList has changed to the `--user UID:GID` method. This means that the PUID and PGID environment variables will no longer take effect. Please ensure that you correctly set the `--user` parameter when running the container to ensure proper file permissions.
 
@@ -76,9 +76,9 @@ docker run -d --restart=unless-stopped -v /etc/openlist:/opt/openlist/data -p 52
 
 ::: en
 ::: tip
-please note: From version `v4.1.0` onwards (excluding v4.1.0), the injection of the user ID for running OpenList has changed to the `--user UID:GID` method. This means that the PUID and PGID environment variables will no longer take effect. Please ensure that you correctly set the `--user` parameter when running the container to ensure proper file permissions.
+Please note: From version `v4.1.0` onwards (excluding v4.1.0), the injection of the user ID for running OpenList has changed to the `--user UID:GID` method. This means that the PUID and PGID environment variables will no longer take effect. Please ensure that you correctly set the `--user` parameter when running the container to ensure proper file permissions.
 
-please note: In the **rootless** mode of Docker, `--user 0:0` represents the current user's UID and GID. Please ensure that you set the `--user` parameter correctly when running the container to ensure proper file permissions.
+Please note: In the **rootless** mode of Docker, `--user 0:0` represents the current user's UID and GID. Please ensure that you set the `--user` parameter correctly when running the container to ensure proper file permissions.
 :::
 
 ::: zh-CN
@@ -168,7 +168,7 @@ docker compose up -d
 ::: en
 | Name | Default | Desc |
 |:------------|:--------|----------------------------------------------------------------------------------------------------------------------------|
-| `PUID` | `0` | User UID,Deprecated in v4.1.0 later versions|
+| `PUID` | `0` | User UID, Deprecated in v4.1.0 later versions|
 | `PGID` | `0` | User GID, Deprecated in v4.1.0 later versions|
 | `UMASK` | `022` | https://en.wikipedia.org/wiki/Umask |
 | `TZ` | `UTC` | Default is the UTC time zone. If you want to specify a time zone, you can set this variable, for example: `Asia/Shanghai`. |
@@ -378,7 +378,7 @@ docker pull openlistteam/openlist:latest
 
 ::: en
 ::: tip
-please note: From version `v4.1.0` onwards (excluding v4.1.0), the injection of the user ID for running OpenList has changed to the `--user UID:GID` method. This means that the PUID and PGID environment variables will no longer take effect. Please ensure that you correctly set the `--user` parameter when running the container to ensure proper file permissions.
+Please note: From version `v4.1.0` onwards (excluding v4.1.0), the injection of the user ID for running OpenList has changed to the `--user UID:GID` method. This means that the PUID and PGID environment variables will no longer take effect. Please ensure that you correctly set the `--user` parameter when running the container to ensure proper file permissions.
 
 Please note: From version `v4.1.0` onwards (excluding v4.1.0), the injection of the user ID for running OpenList has changed to the `--user UID:GID` method. This means that the PUID and PGID environment variables will no longer take effect. Please ensure that you correctly set the `--user` parameter when running the container to ensure proper file permissions.
 
