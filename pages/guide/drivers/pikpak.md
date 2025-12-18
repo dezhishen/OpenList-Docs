@@ -225,24 +225,31 @@ You only need to fill in **`Username`, `Password`, `Shared ID`** three items, **
 ![pikpak-share](/img/drivers/pikpak/pikpak-share.png)
 
 ### 获取根文件夹ID { lang="zh-CN" }
+
 ### Get Root Folder ID { lang="en" }
+
 ![pikpak-share-rootfolder](/img/drivers/pikpak/pikpak-share-rootfolder.png)
 
-::: zh-CN
-当前pikpak分享的根目录ID已经无法在地址中获取，需要查看接口返回的数据
-1. 打开F12控制台，进入网络（Network）选项卡
-2. 刷新页面，搜索`detail`
-3. 选择`detail`，在响应（Response）中找到`files`
-4. 找到对应的文件夹名称，查看其`id`字段内容即为根文件夹ID（可以通过`name`字段来确认对应的文件夹）
-：：：
-
 ::: en
-The root directory ID of the current pikpak share can no longer be obtained in the address, you need to check the data returned by the interface
-1. Open the F12 console and go to the Network tab
-2. Refresh the page and search for `detail`
-3. Select `detail` and find `files` in the Response
-4. Find the corresponding folder name and check its `id` field content as the root folder ID.(You can confirm the corresponding folder through the `name` field)
+**The root directory ID of the current pikpak share can no longer be obtained in the address, you need to check the data returned by the interface**
+
+- Open the F12 console and go to the Network tab
+- Refresh the page and search for `detail`, find the last `detail` request
+- Select `detail` and find `files` in the Response
+- Find the corresponding folder name and check its `id` field content as the root folder ID.(You can confirm the corresponding folder through the `name` field)
+
 :::
+
+::: zh-CN
+**当前pikpak分享的根目录ID已经无法在地址中获取，需要查看接口返回的数据**
+
+- 打开F12控制台，进入网络（Network）选项卡
+- 刷新页面，搜`detail`，找到最后一个`detail`请求
+- 选择`detail`，在响应（Response）中找到`files`
+- 找到对应的文件夹名称，查看其`id`字段内容即为根文件夹ID（可以通过`name`字段来确认对应的文件夹）
+
+:::
+
 ### Use transcoding address { lang="en" }
 
 ### 使用转码地址 { lang="zh-CN" }
