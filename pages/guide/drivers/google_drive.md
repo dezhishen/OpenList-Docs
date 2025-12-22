@@ -82,8 +82,6 @@ Official website: https://drive.google.com/
 
 ::: en
 
-**If you are using OpenList, a public server, or a self-hosted server with built-in keys, you do not need to create this.**
-
 1. On the [Credentials Page](https://console.cloud.google.com/apis/credentials?hl=zh-cn), click the `Create Credentials` dropdown menu and select and click `OAuth Client ID`.
    
    ![google-ouath-00](/img/drivers/google/google-ouath-00.png)
