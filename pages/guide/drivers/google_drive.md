@@ -239,7 +239,7 @@ Similar to Aliyun Drive, it is the last string of the official website URL, such
 
 ::: en
 
-1. Open the management interface of OpenList and click on `Storage``` in the left menu.
+1. Open the management interface of OpenList and click on `Storage` in the left menu.
 
 2. On the Storage List page, click the `Add Storage` button in the top right corner.
 
