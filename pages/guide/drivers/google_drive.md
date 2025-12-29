@@ -145,7 +145,7 @@ Official website: https://drive.google.com/
    ![google-01-01-l](/img/drivers/google/google-01-01-l.png#light)
    ![google-01-01-d](/img/drivers/google/google-01-01-d.png#dark)
 
-   Otherwise, check the box ☑️ to use the API provided by OpenList. **⚠️ If you are using a public or self-hosted server, the built-in Client ID and Application Secret of that server will be used.**
+   Otherwise, check the box ☑️ to use the API provided by OpenList. **⚠️ If you are using a public or self-hosted server, the built-in Client ID and Client Secrets of that server will be used.**
 
    ![google-01-02-l](/img/drivers/google/google-01-02-l.png#light)
    ![google-01-02-d](/img/drivers/google/google-01-02-d.png#dark)
@@ -267,7 +267,7 @@ Similar to Aliyun Drive, it is the last string of the official website URL, such
 
    8.1. Uncheck the `Use online API` option to indicate that you are using your own OAuth client ID and key.
 
-   8.2. Enter your OAuth client ID in the `Client ID` field and your OAuth client key in the `Client Key` field.
+   8.2. Enter your OAuth client ID in the `Client id` field and your OAuth Client secrets in the `Client secret` field.
 
    ![google-08-l](/img/drivers/google/google-08-l.png#light)
    ![google-08-d](/img/drivers/google/google-08-d.png#dark)
