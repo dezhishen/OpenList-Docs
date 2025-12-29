@@ -32,11 +32,12 @@ Official website: https://drive.google.com/
 ## 1. 必要条件 { lang="zh-CN" }
 
 ::: en
+
 1. The machine on which the OpenList service is deployed must be able to connect to Google Drive.
 
-2. The Google Drive API service must be enabled. For details on how to enable it, please refer to [Enabling the Google Drive API](#21-Enabling-the-Google-Drive-API).
+2. The Google Drive API service must be enabled. For details on how to enable it, please refer to [Enabling the Google Drive API](#_2-1-enable-google-drive-api).
 
-   > For detailed steps, see [Google Workspace > Google Drive > Quick Start Guide](https://developers.google.com/workspace/drive/api/quickstart/js). 
+   > For detailed steps, see [Google Workspace > Google Drive > Quick Start Guide](https://developers.google.com/workspace/drive/api/quickstart/js).
 
 :::
 ::: zh-CN
@@ -59,11 +60,11 @@ Official website: https://drive.google.com/
 
 ::: en
 
-1. On the [Guide Page](https://developers.google.com/workspace/drive/api/quickstart/js), locate the `Enable API` button and click to proceed to the quick activation interface. Follow the instructions and confirm the settings to complete the activation process.
+1. On the [Guide Page](https://developers.google.com/workspace/drive/api/quickstart/js), locate the `Enable the API` button and click to proceed to the quick activation interface. Follow the instructions and confirm the settings to complete the activation process.
 
 2. You can also visit the [Google Drive API Management Interface](https://console.cloud.google.com/apis/library/drive.googleapis.com). Find the `Enable` button at the top and click it; wait for the activation to complete.
 
-3. `Quotas and System Limits Management`(optional): Switch to the `Quotas and System Limits` tab and set appropriate quotas and limits based on your usage and requirements. 
+3. `Quotas and System Limits Management`(optional): Switch to the `Quotas and System Limits` tab and set appropriate quotas and limits based on your usage and requirements.
 
 :::
 ::: zh-CN
@@ -82,30 +83,29 @@ Official website: https://drive.google.com/
 
 ::: en
 
-1. On the [Credentials Page](https://console.cloud.google.com/apis/credentials?hl=zh-cn), click the `Create Credentials` dropdown menu and select and click `OAuth Client ID`.
-   
-   ![google-ouath-00](/img/drivers/google/google-ouath-00.png)
-   
-2. In the pop-up window, select `Web Application` and enter the name of your application.
-   
-3. For the `Authorization Redirect URI`, enter `https://api.oplist.org/googleui/callback`. If you are using a self-built service or a non-profit organization, please enter the corresponding domain name, for example, `https://your-domain.com/googleui/callback`.
-   
+1. On the [Credentials Page](https://console.cloud.google.com/apis/credentials?hl=en), click the `Create Credentials` dropdown menu and select and click `OAuth client ID`.
+   > If prompted with `To create an OAuth client ID, you must first configure the consent screen`, click the `Configure consent screen` button, and complete the creation of the `Brand Information` on the subsequent page, selecting `External` for the `Audience`. After completion, return to the Credentials page to continue creating the OAuth client ID.
+   > ![google-ouath-00](/img/drivers/google/google-ouath-eng-00.png)
+2. In the pop-up window, select `Web Application` and enter the name of your application type.
+3. For the `Authorized redirect URIs`, enter `https://api.oplist.org/googleui/callback`. If you are using a self-built service or a non-profit organization, please enter the corresponding domain name, for example, `https://your-domain.com/googleui/callback`.
 4. Click the `Create` button to complete the creation of the OAuth client. Note: Make sure to copy and save the `Client ID` and `Client Secret`; you will need them later on.
-   
-   ![google-ouath-01](/img/drivers/google/google-ouath-01.png)
-   
-5. Add yourself as a test user: On the left side, find the `Target Objects` menu and click to enter it. Then, locate `Test Users` and click the `+ Add User` button. Enter your Google account email address and click `Add`.
-   
-   ![google-ouath-02](/img/drivers/google/google-ouath-02.png)
-   
-6. After completing the testing, you can publish your application: On the left side, find the `Target Objects` menu and click to enter it. Then, locate `Publication Status` and click the `Publish Application` button. Confirm the publication to complete the application release process.
-   
-   ![google-ouath-03](/img/drivers/google/google-ouath-03.png) 
+
+   ![google-ouath-01](/img/drivers/google/google-ouath-eng-01.png)
+
+5. Add yourself as a test user: On the left side, find the `Audience` menu and click to enter it. Then, locate `Test Users` and click the `+ Add users` button. Enter your Google account email address and click `Save`.
+
+   ![google-ouath-02](/img/drivers/google/google-ouath-eng-02.png)
+
+6. After completing the testing, you can publish your application: On the left side, find the `Audience` menu and click to enter it. Then, locate `Publication Status` and click the `Publish app` button. Confirm the publication to complete the application release process.
+
+   ![google-ouath-03](/img/drivers/google/google-ouath-eng-03.png)
 
 :::
 ::: zh-CN
 
 1. 在[凭据界面](https://console.cloud.google.com/apis/credentials?hl=zh-cn)中，点击`创建凭据`下拉菜单，选择和点击`OAuth 客户端 ID`
+
+   > 如果提示`如需创建 OAuth 客户端 ID，您必须先配置权限请求页面`，请点击`配置同意屏幕`按钮，在后续页面中完成`品牌信息`的创建，其中`受众群体`请选择`外部用户`，完成后返回凭据页面继续创建 OAuth 客户端 ID。
 
    ![google-ouath-00](/img/drivers/google/google-ouath-00.png)
 
@@ -140,7 +140,7 @@ Official website: https://drive.google.com/
    ![google-00-l](/img/drivers/google/google-00-l.png#light)
    ![google-00-d](/img/drivers/google/google-00-d.png#dark)
 
-3. If you created an OAuth Client ID in the previous steps, please enter the Client ID and Client Secret in the input fields below.
+3. If you created an OAuth Client ID in the previous steps, please enter the Client ID and Client Secrets in the input fields below.
 
    ![google-01-01-l](/img/drivers/google/google-01-01-l.png#light)
    ![google-01-01-d](/img/drivers/google/google-01-01-d.png#dark)
@@ -158,14 +158,14 @@ Official website: https://drive.google.com/
 
    ![google-03](/img/drivers/google/google-03.png)
 
-6. Pay attention to the permission information on the authorization page (within the red box in the image below). Make sure that the permission granted is only for accessing your Google Drive files. If you find that the permission includes access to something other than just your Google Drive files in the public service, please report an issue at [openlistteam/docs/issues](https://github.com/openlistteam/docs/issues).
+6. Pay attention to the permission information on the authorization page (within the red box in the image below). Make sure that the permission granted is only for accessing your Google Drive files. If you find that the permission includes access to something other than just your Google Drive files in the public service, please report an issue at [OpenListTeam/OpenList-Docs/issues](https://github.com/OpenListTeam/OpenList-Docs/issues).
 
    ![google-04](/img/drivers/google/google-04.png)
 
 7. After authorization is successful, the system will provide you with a `Refresh Token` and an `Access Token`. Please copy and save these tokens, as they will be used in subsequent configurations.
 
    ![google-05-l](/img/drivers/google/google-05-l.png#light)
-   ![google-05-d](/img/drivers/google/google-05-d.png#dark) 
+   ![google-05-d](/img/drivers/google/google-05-d.png#dark)
 
 :::
 ::: zh-CN
@@ -195,7 +195,7 @@ Official website: https://drive.google.com/
 
    ![google-03](/img/drivers/google/google-03.png)
 
-6. 请注意授权页面上（下图红色框内）的权限信息，确保**只是**访问你的 **谷歌云端硬盘文件**，如果在公益服务中发现该权限不仅仅是访问**谷歌云端硬盘**，请在[openlistteam/docs/issues](https://github.com/openlistteam/docs/issues)提起issues。
+6. 请注意授权页面上（下图红色框内）的权限信息，确保**只是**访问你的 **谷歌云端硬盘文件**，如果在公益服务中发现该权限不仅仅是访问**谷歌云端硬盘**，请在[OpenListTeam/OpenList-Docs/issues](https://github.com/OpenListTeam/OpenList-Docs/issues)提起issues。
 
    ![google-04](/img/drivers/google/google-04.png)
 
@@ -252,7 +252,7 @@ Similar to Aliyun Drive, it is the last string of the official website URL, such
 
 5. In the `Root Folder ID` field, enter the root folder ID obtained earlier; if you are using the root directory, enter `root`.
 
-6. In the `Refresh Token` field, enter the refresh token obtained earlier (if not available, refer to [Preparing for Integration](#_2-Preparing_for_Integration).
+6. In the `Refresh Token` field, enter the refresh token obtained earlier (if not available, refer to [Preparing for Integration](#_2-preparation).
 
 7. If you are using the OAuth client ID and key provided by OpenList (or a public welfare server/self-built server), follow steps 7.1 and 7.2:
 
@@ -272,7 +272,7 @@ Similar to Aliyun Drive, it is the last string of the official website URL, such
    ![google-08-l](/img/drivers/google/google-08-l.png#light)
    ![google-08-d](/img/drivers/google/google-08-d.png#dark)
 
-9. Click the `Add` button to complete the addition of Google Drive. 
+9. Click the `Add` button to complete the addition of Google Drive.
 
 :::
 ::: zh-CN
