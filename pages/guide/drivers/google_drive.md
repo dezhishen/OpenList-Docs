@@ -85,20 +85,20 @@ Official website: https://drive.google.com/
 
 1. On the [Credentials Page](https://console.cloud.google.com/apis/credentials?hl=en), click the `Create Credentials` dropdown menu and select and click `OAuth client ID`.
    > If prompted with `To create an OAuth client ID, you must first configure the consent screen`, click the `Configure consent screen` button, and complete the creation of the `Brand Information` on the subsequent page, selecting `External` for the `Audience`. After completion, return to the Credentials page to continue creating the OAuth client ID.
-   > ![google-ouath-00](/img/drivers/google/google-ouath-eng-00.png)
+   > ![google-oauth-00](/img/drivers/google/google-oauth-eng-00.png)
 2. In the pop-up window, select `Web Application` and enter the name of your application type.
 3. For the `Authorized redirect URIs`, enter `https://api.oplist.org/googleui/callback`. If you are using a self-built service or a non-profit organization, please enter the corresponding domain name, for example, `https://your-domain.com/googleui/callback`.
 4. Click the `Create` button to complete the creation of the OAuth client. Note: Make sure to copy and save the `Client ID` and `Client Secret`; you will need them later on.
 
-   ![google-ouath-01](/img/drivers/google/google-ouath-eng-01.png)
+   ![google-oauth-01](/img/drivers/google/google-oauth-eng-01.png)
 
 5. Add yourself as a test user: On the left side, find the `Audience` menu and click to enter it. Then, locate `Test Users` and click the `+ Add users` button. Enter your Google account email address and click `Save`.
 
-   ![google-ouath-02](/img/drivers/google/google-ouath-eng-02.png)
+   ![google-oauth-02](/img/drivers/google/google-oauth-eng-02.png)
 
 6. After completing the testing, you can publish your application: On the left side, find the `Audience` menu and click to enter it. Then, locate `Publication Status` and click the `Publish app` button. Confirm the publication to complete the application release process.
 
-   ![google-ouath-03](/img/drivers/google/google-ouath-eng-03.png)
+   ![google-oauth-03](/img/drivers/google/google-oauth-eng-03.png)
 
 :::
 ::: zh-CN
@@ -107,7 +107,7 @@ Official website: https://drive.google.com/
 
    > 如果提示`如需创建 OAuth 客户端 ID，您必须先配置权限请求页面`，请点击`配置同意屏幕`按钮，在后续页面中完成`品牌信息`的创建，其中`受众群体`请选择`外部用户`，完成后返回凭据页面继续创建 OAuth 客户端 ID。
 
-   ![google-ouath-00](/img/drivers/google/google-ouath-00.png)
+   ![google-oauth-00](/img/drivers/google/google-oauth-00.png)
 
 2. 在弹出的窗口中，选择`Web 应用`，填写应用名称
 
@@ -115,15 +115,15 @@ Official website: https://drive.google.com/
 
 4. 点击`创建`按钮，完成 OAuth 客户端的创建。注：请复制和保存`客户端 ID`和`客户端密钥`，后续需要使用。
 
-   ![google-ouath-00](/img/drivers/google/google-ouath-01.png)
+   ![google-oauth-00](/img/drivers/google/google-oauth-01.png)
 
 5. 将自己添加到测试用户中，在左侧找到`目标对象`菜单，点击进入后，找到`测试用户`下方的`+ Add User`按钮，点击后输入你的 Google 账号邮箱地址，点击添加即可。
 
-   ![google-ouath-02](/img/drivers/google/google-ouath-02.png)
+   ![google-oauth-02](/img/drivers/google/google-oauth-02.png)
 
 6. 测试完毕后可以发布应用，在左侧找到`目标对象`菜单，点击进入后，找到`发布状态`下方的`发布应用`按钮，点击后确认发布即可完成应用发布。
 
-   ![google-ouath-03](/img/drivers/google/google-ouath-03.png)
+   ![google-oauth-03](/img/drivers/google/google-oauth-03.png)
 
 :::
 
