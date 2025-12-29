@@ -15,7 +15,7 @@ categories:
 
 Official website: https://drive.google.com/
 
-- Supports Team Drive (Fill in the Team Drive directory ID for the Root Folder ID)
+- Supports Team Drive (Enter the Team Drive directory ID for the Root Folder ID)
 
 :::
 
