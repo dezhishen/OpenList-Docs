@@ -21,10 +21,10 @@ client ID.
 
 ## 2. Single sign-on client secrets { lang="en" }
 
-## 2. 单点登录秘钥ID { lang="zh-CN" }
+## 2. 单点登录客户端秘钥 { lang="zh-CN" }
 
 ::: en
-secrets ID.
+client secrets.
 ::: warning matters needing attention
 
 1. Remember to write and save the background parameters of OpenList. After writing and saving, you have to go back to the bottom of the personal data and there will be a button that needs to be bound, otherwise it cannot be used
@@ -35,7 +35,7 @@ secrets ID.
 :::
 
 ::: zh-CN
-秘钥ID
+客户端秘钥
 
 ::: warning 注意事项
 
