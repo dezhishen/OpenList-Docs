@@ -211,7 +211,8 @@ strm文件保存的本地路径
 - `Sync Mode`: Based on Update Mode, additionally delete local files that no longer exist on the cloud drive.
 
 > if you need scraper software to read local strm files and generate metadata files, please choose `Update Mode` to ensure that the content of local strm files is up to date and metadata files are not deleted
-> :::
+
+:::
 
 ::: zh-CN
 
@@ -220,4 +221,5 @@ strm文件保存的本地路径
 - `同步模式`: 在更新模式的基础上删除本地中网盘没有的文件
 
 > 如果您需要刮削器等软件需要读取本地strm文件且生成元数据文件，请选择`更新模式`，以确保本地strm文件内容是最新的且不会删除元数据文件
-> :::
+
+:::
