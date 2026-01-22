@@ -357,7 +357,7 @@ The communication progress is as follows:
 :::
 
 ::: en
-::: details history information (outdated，archived at 2026-01-22)
+::: details History information (outdated，archived at 2026-01-22)
 The third-party closed-source QPKG version of OpenList.
 
 [Archived on 2025-7-13](https://web.archive.org/web/20250713005135/https://www.myqnap.org/product/openlist/)
