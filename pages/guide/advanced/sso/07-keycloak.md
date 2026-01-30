@@ -122,6 +122,7 @@ After selecting the realm, click `Clients` → `Create Client`.
 
 ::: zh-CN
 
+- 在左侧找到 `Clients`，选择刚创建的 Client 进入设置页面。
 - 在 Client 设置页面，切换到 `Keys` 选项卡。
 - 在 `Public Key` 字段中复制公钥内容，稍后在 OpenList 配置中使用。
 - 如果没有看到公钥，可以点击 `Generate RSA Keys` 生成
@@ -129,6 +130,7 @@ After selecting the realm, click `Clients` → `Create Client`.
 :::
 ::: en
 
+- In the left menu, find `Clients`, select the newly created Client to enter the settings page.
 - In the Client settings page, switch to the `Keys` tab.
 - Copy the content in the `Public Key` field for later use in OpenList configuration.
 - If the public key is not visible, click `Generate RSA Keys` to generate it.
