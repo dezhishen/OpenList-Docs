@@ -169,7 +169,7 @@ After selecting the realm, click `Clients` → `Create Client`.
 - **SSO 组织名称**：`master` （与上文[新建 Realm](#_3-7-1-1-新建-realm)名称对应）
 - **SSO 应用名**：`OpenList` （见上文[新建 Client](#_3-7-1-2-新建-client)）
 - **SSO 端点名称**：`https://your.keycloak.domain/realms/{realm-name}` （realm-name与组织名一致）
-- **SSO JWT 公钥**：见上文[获取jwt公钥](#_3-7-1-3-获取jwt公钥)
+- **SSO JWT 公钥**：见上文[获取JWT公钥](#_3-7-1-3-获取JWT公钥)
 - **自动注册为 OpenList 帐号**：根据需要开启
 - **SSO 兼容模式**：`否` （如果需要兼容可开启）
 
