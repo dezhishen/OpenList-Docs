@@ -1,4 +1,4 @@
-### 3.7. keycloak
+### 3.7. Keycloak
 
 ::: zh-CN
 Keycloak 通过 OIDC（OpenID Connect）协议实现与 OpenList 的单点登录对接，可以作为 OpenList 的身份提供者，下面是配置步骤。
