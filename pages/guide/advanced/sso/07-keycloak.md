@@ -82,7 +82,7 @@ After selecting the realm, click `Clients` → `Create Client`.
   ::: en
   ::: details see the details
   |Name|Value|
-  -|-
+  -|----
   Client authentication| On|
   Authorization| Off|
   Authentication flow|`Standard Flow`，`Service account roles`|
@@ -164,7 +164,7 @@ After selecting the realm, click `Clients` → `Create Client`.
 - **启用 SSO 登录**：`是`
 - **SSO 登录平台**：`OIDC`
 - **SSO 客户端ID**：Keycloak 客户端 ID（见上文[新建 Client](#_3-7-1-2-新建-client)）
-- **SSO 客户端密钥**：Keycloak 客户端 Secret（见上文[获取Client Secret](#_3-7-1-4-获取client-secret)Secret对应）
+- **SSO 客户端密钥**：Keycloak 客户端 Secret（见上文[获取Client Secret](#_3-7-1-4-获取client-secret)）
 - **SSO OIDC 用户名键**：`preferred_username` 或按你的 Mapper 设置
 - **SSO 组织名称**：`master` （与上文[新建 Realm](#_3-7-1-1-新建-realm)名称对应）
 - **SSO 应用名**：`OpenList` （见上文[新建 Client](#_3-7-1-2-新建-client)）
